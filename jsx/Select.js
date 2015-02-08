@@ -1,42 +1,26 @@
-/* global React, $ */
-'use strict';
+/* global React */
+'use strict'; 
 
 require('../js/bootstrap-select');
-var React = require('react');
-var Input = require('react-bootstrap').Input;
-var ReactDOM = require('react-dom');
 
-var BootstrapSelect = React.createClass({displayName: 'BootstrapSelect',
+var BootstrapSelect = React.createClass({
   getInitialState: function () {
     return {
       open: false
     };
   },
   componentDidUpdate: function () {
-    $(ReactDOM.findDOMNode(this)).find('select').selectpicker('refresh');
-    var select = $(ReactDOM.findDOMNode(this)).find('div.bootstrap-select');
+    var select = $(this.getDOMNode()).find('div.bootstrap-select');
     select.toggleClass('open', this.state.open);
-  },
-  componentWillUnmount: function () {
-    var self = this;
-    var select = $(ReactDOM.findDOMNode(this)).find('select');
-
-    var button = $(ReactDOM.findDOMNode(this)).find('button');
-    var dropdown = $(ReactDOM.findDOMNode(this)).find('.dropdown-menu.open');
-    var items = $(ReactDOM.findDOMNode(this)).find('ul.dropdown-menu li a');
-
-    $('html').off('click');
-    button.off('click');
-    items.off('click');
   },
   componentDidMount: function () {
     var self = this;
-    var select = $(ReactDOM.findDOMNode(this)).find('select');
-    $(select).selectpicker();
+    var select = $(this.getDOMNode()).find('select');
+    var button = $(this.getDOMNode()).find('button');
+    var dropdown = $(this.getDOMNode()).find('.dropdown-menu.open');
+    var items = $(this.getDOMNode()).find('ul.dropdown-menu li a');
 
-    var button = $(ReactDOM.findDOMNode(this)).find('button');
-    var dropdown = $(ReactDOM.findDOMNode(this)).find('.dropdown-menu.open');
-    var items = $(ReactDOM.findDOMNode(this)).find('ul.dropdown-menu li a');
+    $(select).selectpicker();
 
     $('html').click(function () {
       self.setState({ open: false });
@@ -54,7 +38,7 @@ var BootstrapSelect = React.createClass({displayName: 'BootstrapSelect',
   },
   render: function () {
     return (
-      <Input {...this.props} type='select' />
+      <React.Bootstrap.Input {...this.props} type='select' />
     );
   }
 });
