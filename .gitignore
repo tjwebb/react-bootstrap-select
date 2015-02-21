@@ -11,3 +11,6 @@ bower_components
 
 # Dist zip
 bootstrap-select-*.zip
+
+# Example Dist
+app.js

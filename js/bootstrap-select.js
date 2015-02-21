@@ -1,5 +1,7 @@
-(function ($) {
+
   'use strict';
+
+  var jQuery = require('jQuery');
 
   //<editor-fold desc="Shims">
   if (!String.prototype.includes) {
@@ -1370,4 +1372,3 @@
       Plugin.call($selectpicker, $selectpicker.data());
     })
   });
-})(jQuery);
