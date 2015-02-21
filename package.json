@@ -67,6 +67,7 @@
     "babelify": "^5.0.3",
     "gulp-less": "^3.0.0",
     "merge-stream": "^0.1.7"
+  },
   "peerDependencies": {
     "react": "^0.12.2"
   }
