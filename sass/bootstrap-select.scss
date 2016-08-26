@@ -1,8 +1,26 @@
 @import "variables";
 
 // Mixins
-.cursor-disabled() {
+@mixin cursor-disabled() {
   cursor: not-allowed;
+}
+
+@mixin box-sizing($fmt) {
+  -webkit-box-sizing: $fmt;
+     -moz-box-sizing: $fmt;
+          box-sizing: $fmt;
+}
+
+@mixin box-shadow($fmt) {
+  -webkit-box-shadow: $fmt;
+          box-shadow: $fmt;
+}
+
+@function fade($color, $amnt) {
+  @if $amnt > 1 {
+    $amnt: $amnt / 100; // convert to percentage if int
+  }
+  @return rgba($color, $amnt);
 }
 
 // Rules
@@ -23,7 +41,7 @@ select.selectpicker {
     &.bs-placeholder,
     &.bs-placeholder:hover,
     &.bs-placeholder:focus,
-    &.bs-placeholder:active { color: @input-color-placeholder; }
+    &.bs-placeholder:active { color: $input-color-placeholder; }
   }
 
   > select {
@@ -49,7 +67,7 @@ select.selectpicker {
   // Error display
   .has-error & .dropdown-toggle,
   .error & .dropdown-toggle {
-    border-color: @color-red-error;
+    border-color: $color-red-error;
   }
 
   &.fit-width {
@@ -57,7 +75,7 @@ select.selectpicker {
   }
 
   &:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: @width-default;
+    width: $width-default;
   }
 
   .dropdown-toggle:focus {
@@ -124,7 +142,7 @@ select.selectpicker {
 
   &.disabled,
   > .disabled {
-    .cursor-disabled();
+    @include cursor-disabled();
 
     &:focus {
       outline: none !important;
@@ -135,9 +153,9 @@ select.selectpicker {
     position: absolute;
     height: 0 !important;
     padding: 0 !important;
-    
+
     .dropdown-menu {
-      z-index: @zindex-select-dropdown;
+      z-index: $zindex-select-dropdown;
     }
   }
 
@@ -166,7 +184,7 @@ select.selectpicker {
   // The selectpicker dropdown
   .dropdown-menu {
     min-width: 100%;
-    box-sizing: border-box;
+    @include box-sizing(border-box);
 
     &.inner {
       position: static;
@@ -186,7 +204,7 @@ select.selectpicker {
       }
 
       &.disabled a {
-        .cursor-disabled();
+        @include cursor-disabled();
       }
 
       a {
@@ -224,10 +242,10 @@ select.selectpicker {
       padding: 3px 5px;
       background: rgb(245, 245, 245);
       border: 1px solid rgb(227, 227, 227);
-      box-shadow: inset 0 1px 1px fade(rgb(0, 0, 0), 5%);
+      @include box-shadow(inset 0 1px 1px fade(rgb(0, 0, 0), 5));
       pointer-events: none;
       opacity: 0.9;
-      box-sizing: border-box;
+      @include box-sizing(border-box);
     }
   }
 
@@ -266,7 +284,7 @@ select.selectpicker {
 
 .bootstrap-select.show-menu-arrow {
   &.open > .dropdown-toggle {
-    z-index: (@zindex-select-dropdown + 1);
+    z-index: ($zindex-select-dropdown + 1);
   }
 
   .dropdown-toggle {
@@ -274,7 +292,7 @@ select.selectpicker {
       content: '';
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-bottom: 7px solid @color-grey-arrow;
+      border-bottom: 7px solid $color-grey-arrow;
       position: absolute;
       bottom: -4px;
       left: 9px;
@@ -297,7 +315,7 @@ select.selectpicker {
     &:before {
       bottom: auto;
       top: -3px;
-      border-top: 7px solid @color-grey-arrow;
+      border-top: 7px solid $color-grey-arrow;
       border-bottom: 0;
     }
 
@@ -337,7 +355,7 @@ select.selectpicker {
 
 .bs-actionsbox {
   width: 100%;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 
   & .btn-group button {
     width: 50%;
@@ -347,7 +365,7 @@ select.selectpicker {
 .bs-donebutton {
   float: left;
   width: 100%;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 
   & .btn-group button {
     width: 100%;
