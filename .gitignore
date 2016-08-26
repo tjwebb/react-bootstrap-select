@@ -8,9 +8,7 @@ dist/
 # Folders to ignore
 node_modules
 bower_components
-.sass-cache
 
 # Dist zip
 bootstrap-select-*.zip
-
-docs/site
+/js/index.js

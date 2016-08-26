@@ -1,10 +1,10 @@
 {
   "name": "react-bootstrap-select",
-  "main": "dist/Select.js",
+  "main": "js/index.js",
   "description": "A custom <select> for react-bootstrap using button dropdown as replacement",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "scripts": {
-    "postinstall": "jsx jsx/ dist/"
+    "postinstall": "./node_modules/.bin/browserify -t [ babelify --presets [ react ] ] ./jsx/Select.js > ./js/index.js"
   },
   "author": {
     "name": "Travis Webb <me@traviswebbcom>",
@@ -40,10 +40,7 @@
     "type": "git",
     "url": "git://github.com/tjwebb/react-bootstrap-select.git"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/tjwebb/react-bootstrap-select/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -52,16 +49,12 @@
     "select",
     "replacement"
   ],
-  "dependencies": {
-    "browserify": "^9.0",
-    "gulp": "^3.8.10",
-    "gulp-uglify": "^1.1.0",
-    "react-tools": "^0.13",
-    "reactify": "^1.0.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0"
+  "devDependencies": {
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^9.0.8"
   },
-  "peerDependencies": {
+  "dependencies": {
     "react": ">=0.14.0",
     "react-bootstrap": ">=0.27.0",
     "react-dom": ">=0.14.0"
